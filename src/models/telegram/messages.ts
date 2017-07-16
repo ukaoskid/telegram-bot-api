@@ -1,11 +1,11 @@
 import { IMessages } from "../interfaces/services/messages/messages";
-import { IUser } from "../interfaces/user";
+import { IUser } from "../interfaces/entities/user";
 import { ISendMessagePayload } from "../interfaces/payloads/requests/send-message-payload";
 import { HTTPRequest } from "../request";
 import { TelegramProvider } from "./telegram-provider";
-import { ISendMessageResponse } from "../interfaces/payloads/response/send-message-response";
 import { IForwardMessagePayload } from "../interfaces/payloads/requests/forward-message";
 import { ISendPhotoPayload } from "../interfaces/payloads/requests/send-photo-payload";
+import { IMessageResponse } from "../interfaces/payloads/response/message-response";
 
 export class Messages implements IMessages {
 
@@ -19,15 +19,15 @@ export class Messages implements IMessages {
         return HTTPRequest.request(null, TelegramProvider.services.getMe, this.token);
     }
 
-    public sendMessage(payload: ISendMessagePayload): Promise<ISendMessageResponse> {
+    public sendMessage(payload: ISendMessagePayload): Promise<IMessageResponse> {
         return HTTPRequest.request(payload, TelegramProvider.services.sendMessage, this.token);
     }
 
-    public forwardMessage(payload: IForwardMessagePayload): Promise<ISendMessageResponse> {
+    public forwardMessage(payload: IForwardMessagePayload): Promise<IMessageResponse> {
         return HTTPRequest.request(payload, TelegramProvider.services.forwardMessage, this.token);
     }
 
-    public sendPhoto(payload: ISendPhotoPayload): Promise<ISendMessageResponse> {
+    public sendPhoto(payload: ISendPhotoPayload): Promise<IMessageResponse> {
         return HTTPRequest.request(payload, TelegramProvider.services.sendPhoto, this.token);
     }
 }

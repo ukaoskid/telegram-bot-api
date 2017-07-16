@@ -93,11 +93,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const telegram_1 = __webpack_require__(2);
 let telegram = new telegram_1.Telegram("372720809:AAHtX0vmO77v2xeCef9xp9hY021SDhPq3Gc");
 let photo = {
-    chat_id: 14622030,
-    photo: "https://git-for-windows.github.io/img/git_logo.png",
-    caption: "GIT Logo"
+    chat_id: 74594377,
+    text: "testing a text message"
 };
-telegram.messages.sendPhoto(photo).then((userCazzo) => {
+telegram.messages.sendMessage(photo).then((userCazzo) => {
     console.log("USER", userCazzo);
 }).catch((error) => {
     console.error("VAFF", JSON.stringify(error));
