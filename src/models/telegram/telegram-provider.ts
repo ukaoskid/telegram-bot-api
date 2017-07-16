@@ -7,6 +7,8 @@ export const TelegramProvider = {
     getMe: "/getMe",
     sendMessage: "/sendMessage",
     forwardMessage: "/forwardMessage",
-    sendPhoto: "/sendPhoto"
+    sendPhoto: "/sendPhoto",
+    sendAudio: "/sendAudio",
+    sendDocument: "/sendDocument"
   }
 };
