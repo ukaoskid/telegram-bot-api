@@ -1,0 +1,34 @@
+{
+  "name": "telegram-api-bot-lib",
+  "version": "1.0.0",
+  "description": "Telegram Bot API",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ukaoskid/telegram-api.git"
+  },
+  "keywords": [
+    "telegram",
+    "api",
+    "bot"
+  ],
+  "author": "Simone Di Cicco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ukaoskid/telegram-api/issues"
+  },
+  "homepage": "https://github.com/ukaoskid/telegram-api#readme",
+  "dependencies": {
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4"
+  },
+  "devDependencies": {
+    "ts-loader": "^2.3.0",
+    "typescript": "^2.4.1",
+    "webpack": "^3.3.0",
+    "webpack-node-externals": "^1.6.0"
+  }
+}
