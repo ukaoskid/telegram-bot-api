@@ -26,7 +26,18 @@ import { IAnsweCallbackQueryPayload } from "../payloads/info/answer-callback-que
 
 export interface IInfo {
 
+  /**
+   * A simple method for testing your bot's auth token. Requires no parameters.
+   * Returns basic information about the bot in form of a User object.
+   * @returns {Promise<TelegramResponse<IUser>>}
+   */
   getMe(): Promise<TelegramResponse<IUser>>;
+
+  /**
+   * Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
+   * @param payload
+   * @returns {Promise<TelegramResponse<IUserProfilePhotos>>}
+   */
   getUserProfilePhotos(payload: IGetUserProfilePhotosPayload): Promise<TelegramResponse<IUserProfilePhotos>>;
   getFile(payload: IGetFilePayload): Promise<TelegramResponse<IFile>>;
   kickChatMember(payload: IKickChatMemberPayload): Promise<TelegramResponse<boolean>>;
