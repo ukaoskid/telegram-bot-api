@@ -1,5 +1,5 @@
 {
-  "name": "telegram-api-bot-lib",
+  "name": "telegram-bot-api-client",
   "version": "1.0.0",
   "description": "Telegram Bot API",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ukaoskid/telegram-api.git"
+    "url": "git+https://github.com/ukaoskid/telegram-bot-api.git"
   },
   "keywords": [
     "telegram",
@@ -18,9 +18,9 @@
   "author": "Simone Di Cicco",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ukaoskid/telegram-api/issues"
+    "url": "https://github.com/ukaoskid/telegram-bot-api/issues"
   },
-  "homepage": "https://github.com/ukaoskid/telegram-api#readme",
+  "homepage": "https://github.com/ukaoskid/telegram-bot-api#readme",
   "dependencies": {
     "request": "^2.81.0",
     "request-promise-native": "^1.0.4"
