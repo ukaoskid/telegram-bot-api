@@ -1,9 +1,9 @@
-export interface IBaseSendPayload {
+import { IInlineKeyboardMarkup } from "../../entities/inline-keyboard-markup";
+import { IReplyKeyboardMarkup } from "../../entities/reply-keyboard-markup";
+import { IReplyKeyboardRemove } from "../../entities/reply-keyboard-remove";
+import { IForceReply } from "../../entities/force-reply";
 
-  /*
-   Todo add the following types - reply_markup:
-   InlineKeyboardMarkup or ReplyKeyboardMarkup or ReplyKeyboardRemove or ForceReply
-   */
+export interface IBaseSendPayload {
 
   /**
    * Unique identifier for the target chat or username of the target channel (in the format @channelusername).
@@ -24,5 +24,5 @@ export interface IBaseSendPayload {
    * Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard,
    * instructions to remove reply keyboard or to force a reply from the user.
    */
-  reply_markup?: any
+  reply_markup?: IInlineKeyboardMarkup | IReplyKeyboardMarkup | IReplyKeyboardRemove | IForceReply
 }
