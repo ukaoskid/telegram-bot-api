@@ -4,8 +4,7 @@ import { ISendMessagePayload } from "./models/interfaces/payloads/send/send-mess
 let telegram: Telegram = new Telegram("372720809:AAHtX0vmO77v2xeCef9xp9hY021SDhPq3Gc");
 let photo: ISendMessagePayload = {
   chat_id: 74594377,
-  text: "testing a text message",
-  disable_notification: true
+  text: "testing a text message"
 }
 
 telegram.messages.sendMessage(photo).then((userCazzo) => {

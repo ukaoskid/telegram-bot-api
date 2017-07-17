@@ -1,7 +1,7 @@
 import { ISendMessagePayload } from "../payloads/send/send-message-payload";
 import { IForwardMessagePayload } from "../payloads/send/forward-message";
 import { ISendPhotoPayload } from "../payloads/send/send-photo-payload";
-import { IMessageResponse } from "../payloads/response/message-response";
+import { IMessage } from "../entities/message";
 import { ISendAudioPayload } from "../payloads/send/send-audio-payload";
 import { ISendDocumentPayload } from "../payloads/send/send-document-payload";
 import { ISendStickerPayload } from "../payloads/send/send-sticker-payload";
@@ -12,20 +12,21 @@ import { ISendLocationPayload } from "../payloads/send/send-location-payload";
 import { ISendVenuePayload } from "../payloads/send/send-venue-payload";
 import { ISendContactPayload } from "../payloads/send/send-contact-payload";
 import { ISendChatAction } from "../payloads/send/send-chat-action-payload";
+import { TelegramResponse } from "../payloads/response/generic-response";
 
 export interface IMessages {
 
-  sendMessage(payload: ISendMessagePayload): Promise<IMessageResponse>;
-  forwardMessage(payload: IForwardMessagePayload): Promise<IMessageResponse>;
-  sendPhoto(payload: ISendPhotoPayload): Promise<IMessageResponse>;
-  sendAudio(payload: ISendAudioPayload): Promise<IMessageResponse>;
-  sendDocument(payload: ISendDocumentPayload): Promise<IMessageResponse>;
-  sendSticker(payload: ISendStickerPayload): Promise<IMessageResponse>;
-  sendVideo(payload: ISendVideoPayload): Promise<IMessageResponse>;
-  sendVoice(payload: ISendVoicePayload): Promise<IMessageResponse>;
-  sendVideoNote(payload: ISendVideoNotePayload): Promise<IMessageResponse>;
-  sendLocation(payload: ISendLocationPayload): Promise<IMessageResponse>;
-  sendVenue(payload: ISendVenuePayload): Promise<IMessageResponse>;
-  sendContact(payload: ISendContactPayload): Promise<IMessageResponse>;
-  sendChatAction(payload: ISendChatAction): Promise<boolean>;
+  sendMessage(payload: ISendMessagePayload): Promise<TelegramResponse<IMessage>>;
+  forwardMessage(payload: IForwardMessagePayload): Promise<TelegramResponse<IMessage>>;
+  sendPhoto(payload: ISendPhotoPayload): Promise<TelegramResponse<IMessage>>;
+  sendAudio(payload: ISendAudioPayload): Promise<TelegramResponse<IMessage>>;
+  sendDocument(payload: ISendDocumentPayload): Promise<TelegramResponse<IMessage>>;
+  sendSticker(payload: ISendStickerPayload): Promise<TelegramResponse<IMessage>>;
+  sendVideo(payload: ISendVideoPayload): Promise<TelegramResponse<IMessage>>;
+  sendVoice(payload: ISendVoicePayload): Promise<TelegramResponse<IMessage>>;
+  sendVideoNote(payload: ISendVideoNotePayload): Promise<TelegramResponse<IMessage>>;
+  sendLocation(payload: ISendLocationPayload): Promise<TelegramResponse<IMessage>>;
+  sendVenue(payload: ISendVenuePayload): Promise<TelegramResponse<IMessage>>;
+  sendContact(payload: ISendContactPayload): Promise<TelegramResponse<IMessage>>;
+  sendChatAction(payload: ISendChatAction): Promise<TelegramResponse<boolean>>;
 }

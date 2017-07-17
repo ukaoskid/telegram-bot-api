@@ -7,12 +7,15 @@ import { IGetChat } from "../payloads/info/get-chat-payload";
 import { IChat } from "../entities/chat";
 import { IGetChatAdministratorsPayload } from "../payloads/info/get-chat-administrators-payload";
 import { IChatMember } from "../entities/chat-member";
+import { IGetChatMembersCountPayload } from "../payloads/info/get-chat-members-count-payload";
+import { TelegramResponse } from "../payloads/response/generic-response";
 
 export interface IInfo {
 
-  getMe(): Promise<IUser>;
-  getUserProfilePhotos(payload: IGetUserProfilePhotosPayload): Promise<IUserProfilePhotos>;
-  getFile(payload: IGetFile): Promise<IFile>;
-  getChat(payload: IGetChat): Promise<IChat>;
-  getChatAdministrators(payload: IGetChatAdministratorsPayload): Promise<IChatMember[]>;
+  getMe(): Promise<TelegramResponse<IUser>>;
+  getUserProfilePhotos(payload: IGetUserProfilePhotosPayload): Promise<TelegramResponse<IUserProfilePhotos>>;
+  getFile(payload: IGetFile): Promise<TelegramResponse<IFile>>;
+  getChat(payload: IGetChat): Promise<TelegramResponse<IChat>>;
+  getChatAdministrators(payload: IGetChatAdministratorsPayload): Promise<TelegramResponse<IChatMember[]>>;
+  getChatMembersCount(payload: IGetChatMembersCountPayload): Promise<TelegramResponse<number>>;
 }

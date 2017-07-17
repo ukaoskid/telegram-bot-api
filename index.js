@@ -75,6 +75,8 @@ exports.TelegramProvider = {
     bot: "/bot",
     method: "POST",
     services: {
+        send: {},
+        info: {},
         getMe: "/getMe",
         sendMessage: "/sendMessage",
         forwardMessage: "/forwardMessage",
@@ -88,7 +90,26 @@ exports.TelegramProvider = {
         sendLocation: "/sendLocation",
         sendVenue: "/sendVenue",
         sendContact: "/sendContact",
-        sendChatAction: "/sendChatAction"
+        sendChatAction: "/sendChatAction",
+        getUserProfilePhotos: "/getUserProfilePhotos",
+        getFile: "/getFile",
+        kickChatMember: "kickChatMember/",
+        unbanChatMember: "/unbanChatMember",
+        restrictChatMember: "/restrictChatMember",
+        promoteChatMember: "/promoteChatMember",
+        exportChatInviteLink: "/exportChatInviteLink",
+        setChatPhoto: "/setChatPhoto",
+        deleteChatPhoto: "/deleteChatPhoto",
+        setChatTitle: "/setChatTitle",
+        setChatDescription: "/setChatDescription",
+        pinChatMessage: "/pinChatMessage",
+        unpinChatMessage: "/unpinChatMessage",
+        leaveChat: "/leaveChat",
+        getChat: "/getChat",
+        getChatAdministrators: "/getChatAdministrators",
+        getChatMembersCount: "/getChatMembersCount",
+        getChatMember: "/getChatMember",
+        answerCallbackQuery: "/answerCallbackQuery"
     }
 };
 
@@ -158,8 +179,7 @@ const telegram_1 = __webpack_require__(4);
 let telegram = new telegram_1.Telegram("372720809:AAHtX0vmO77v2xeCef9xp9hY021SDhPq3Gc");
 let photo = {
     chat_id: 74594377,
-    text: "testing a text message",
-    disable_notification: true
+    text: "testing a text message"
 };
 telegram.messages.sendMessage(photo).then((userCazzo) => {
     console.log("USER", userCazzo);
