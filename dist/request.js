@@ -17,7 +17,6 @@ class HTTPRequest {
         };
         return rp(options).promise()
             .catch((error) => {
-            console.error("SM", error.error);
             throw error.error;
         });
         ;

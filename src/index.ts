@@ -7,9 +7,11 @@ let photo: ISendMessagePayload = {
   text: "testing a text message"
 }
 
-telegram.messages.sendMessage(photo).then((userCazzo) => {
+telegram.messages.sendMessage(photo)
+  .then((userCazzo) => {
   console.log("USER", userCazzo);
-}).catch((error) => {
+})
+  .catch((error) => {
   console.error("VAFF", JSON.stringify(error));
 });
 

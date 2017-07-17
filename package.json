@@ -1,6 +1,6 @@
 {
   "name": "telegram-bot-api-client",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Telegram Bot API",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "bot"
   ],
   "author": "Simone Di Cicco",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ukaoskid/telegram-bot-api/issues"
   },
