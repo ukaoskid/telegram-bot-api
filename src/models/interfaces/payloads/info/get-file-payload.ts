@@ -1,7 +1,7 @@
 /**
  * Get File API Payload
  */
-export interface IGetFile {
+export interface IGetFilePayload {
 
   /**
    * File identifier to get info about.

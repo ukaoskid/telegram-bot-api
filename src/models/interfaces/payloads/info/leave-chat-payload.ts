@@ -1,7 +1,7 @@
 /**
- * Get Chat API Payload.
+ * Leave Chat API Payload.
  */
-export interface IGetChatPayload {
+export interface ILeaveChatPayload {
 
   /**
    * Unique identifier for the target chat or username of the target supergroup or

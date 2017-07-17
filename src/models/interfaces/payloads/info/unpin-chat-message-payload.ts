@@ -1,7 +1,7 @@
 /**
- * Get Chat API Payload.
+ * Unpin Chat Message API Payload.
  */
-export interface IGetChatPayload {
+export interface IUnpinChatMessagePayload {
 
   /**
    * Unique identifier for the target chat or username of the target supergroup or

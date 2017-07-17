@@ -1,7 +1,7 @@
 /**
- * Get Chat API Payload.
+ * Delete Chat Photo API Payload.
  */
-export interface IGetChatPayload {
+export interface IDeleteChatPhotoPayload {
 
   /**
    * Unique identifier for the target chat or username of the target supergroup or
