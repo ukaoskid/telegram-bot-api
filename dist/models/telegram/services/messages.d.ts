@@ -1,0 +1,32 @@
+import { IMessages } from "../../interfaces/services/messages";
+import { ISendMessagePayload } from "../../interfaces/payloads/send/send-message-payload";
+import { IForwardMessagePayload } from "../../interfaces/payloads/send/forward-message";
+import { ISendPhotoPayload } from "../../interfaces/payloads/send/send-photo-payload";
+import { IMessage } from "../../interfaces/entities/message";
+import { ISendAudioPayload } from "../../interfaces/payloads/send/send-audio-payload";
+import { ISendDocumentPayload } from "../../interfaces/payloads/send/send-document-payload";
+import { ISendStickerPayload } from "../../interfaces/payloads/send/send-sticker-payload";
+import { ISendVideoPayload } from "../../interfaces/payloads/send/send-video-payload";
+import { ISendVoicePayload } from "../../interfaces/payloads/send/send-voice-payload";
+import { ISendVideoNotePayload } from "../../interfaces/payloads/send/send-video-note-payload";
+import { ISendLocationPayload } from "../../interfaces/payloads/send/send-location-payload";
+import { ISendVenuePayload } from "../../interfaces/payloads/send/send-venue-payload";
+import { ISendContactPayload } from "../../interfaces/payloads/send/send-contact-payload";
+import { ISendChatAction } from "../../interfaces/payloads/send/send-chat-action-payload";
+import { BaseService } from "./base-service";
+import { TelegramResponse } from "../../interfaces/payloads/response/generic-response";
+export declare class Messages extends BaseService implements IMessages {
+    sendMessage(payload: ISendMessagePayload): Promise<TelegramResponse<IMessage>>;
+    forwardMessage(payload: IForwardMessagePayload): Promise<TelegramResponse<IMessage>>;
+    sendPhoto(payload: ISendPhotoPayload): Promise<TelegramResponse<IMessage>>;
+    sendAudio(payload: ISendAudioPayload): Promise<TelegramResponse<IMessage>>;
+    sendDocument(payload: ISendDocumentPayload): Promise<TelegramResponse<IMessage>>;
+    sendSticker(payload: ISendStickerPayload): Promise<TelegramResponse<IMessage>>;
+    sendVideo(payload: ISendVideoPayload): Promise<TelegramResponse<IMessage>>;
+    sendVoice(payload: ISendVoicePayload): Promise<TelegramResponse<IMessage>>;
+    sendVideoNote(payload: ISendVideoNotePayload): Promise<TelegramResponse<IMessage>>;
+    sendLocation(payload: ISendLocationPayload): Promise<TelegramResponse<IMessage>>;
+    sendVenue(payload: ISendVenuePayload): Promise<TelegramResponse<IMessage>>;
+    sendContact(payload: ISendContactPayload): Promise<TelegramResponse<IMessage>>;
+    sendChatAction(payload: ISendChatAction): Promise<TelegramResponse<boolean>>;
+}
