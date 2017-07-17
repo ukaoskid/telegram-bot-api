@@ -9,6 +9,14 @@ export const TelegramProvider = {
     forwardMessage: "/forwardMessage",
     sendPhoto: "/sendPhoto",
     sendAudio: "/sendAudio",
-    sendDocument: "/sendDocument"
+    sendDocument: "/sendDocument",
+    sendSticker: "/sendSticker",
+    sendVideo: "/sendVideo",
+    sendVoice: "/sendVoice",
+    sendVideoNote: "/sendVideoNote",
+    sendLocation: "/sendLocation",
+    sendVenue: "/sendVenue",
+    sendContact: "/sendContact",
+    sendChatAction: "/sendChatAction"
   }
 };
