@@ -23,7 +23,7 @@ Now you have activated your bot. Let's try to send a message:
 
 ```javascript
 import { Telegram } from "telegram-bot-api-client/dist/telegram/telegram";
-import { ISendContactPayload } from "telegram-bot-api-client/dist/interfaces/payloads/send/send-contact-payload";
+import { ISendMessagePayload } from "telegram-bot-api-client/dist/interfaces/payloads/send/send-message-payload";
 
 let botToken = "the token you got from @BotFather";
 let telegram: Telegram = new Telegram(botToken);

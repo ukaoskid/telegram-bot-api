@@ -63,70 +63,96 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<h1 id="telegram-bot-api-client">telegram-bot-api-client</h1>
-				<p>Telegram Bot API Client interface.</p>
-				<h2 id="installation-and-use">Installation and use</h2>
-				<p>To install the package just type <code>npm i telegram-bot-api-client --save</code></p>
-				<h3 id="example">Example</h3>
-				<h4 id="first-you-need-to-create-a-telegram-bot">First you need to create a Telegram Bot</h4>
-				<p>Open Telegram and search for <strong>@BotFather</strong>. It is the manager of all Telegram&#39;s bot.
-				The bot creation happens entirely on the chat by using commands.</p>
-				<ul>
-					<li>Request a new bot: <code>/newbot</code><ul>
-							<li><strong>@BotFather</strong> will ask you for a name to give: <code>give-a-name-to-the-bot</code></li>
-						</ul>
-					</li>
-					<li>Finally request for a token: <code>/token</code><ul>
-							<li><strong>@BotFather</strong> will reply you with a token. Copy it.</li>
-						</ul>
-					</li>
-					<li>Just if you want, you can set the bot as an entity that can join Telegram groups: <code>/setjoingroups</code><ul>
-							<li><strong>@BotFather</strong> will ask you to <code>enable</code> or <code>disable</code> the bot to join groups: <code>enable | disable</code></li>
-						</ul>
-					</li>
-				</ul>
-				<p>Now you have activated your bot. Let&#39;s try to send a message:</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { Telegram } <span class="hljs-keyword">from</span> <span class="hljs-string">"telegram-bot-api-client/dist/telegram/telegram"</span>;
-<span class="hljs-keyword">import</span> { ISendMessagePayload } <span class="hljs-keyword">from</span> <span class="hljs-string">"telegram-bot-api-client/dist/interfaces/payloads/send/send-message-payload"</span>;
-
-<span class="hljs-keyword">let</span> botToken = <span class="hljs-string">"the token you got from @BotFather"</span>;
-<span class="hljs-keyword">let</span> telegram: Telegram = <span class="hljs-keyword">new</span> Telegram(botToken);
-<span class="hljs-keyword">let</span> userChatId: <span class="hljs-number">12345678</span>;
-
-<span class="hljs-comment">/*
- * Generally, you need to know the Telegram ID of the user you want to involve in the action.
- */</span>
-<span class="hljs-keyword">let</span> messagePayload: ISendMessagePayload = {
-  <span class="hljs-attr">chat_id</span>: userChatId,
-  <span class="hljs-attr">text</span>: <span class="hljs-string">"testing a text message"</span>
-}
-
-telegram.messages.sendMessage(messagePayload)
-    .then(<span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
-      <span class="hljs-built_in">console</span>.log(response);
-    })
-    .catch(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
-      <span class="hljs-built_in">console</span>.error(<span class="hljs-built_in">JSON</span>.stringify(error));
-    });
-</code></pre>
-				<h2 id="what-s-on-the-plan-to-do">What&#39;s on the plan to do</h2>
-				<ul>
-					<li>[ ] Integrating JSDoc to the project</li>
-					<li>Telegram API Integration<ul>
-							<li>[X] Generic available methods</li>
-							<li>[ ] Inline mode</li>
-							<li>[ ] Updating messages</li>
-							<li>[ ] Payments</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>External modules</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_animation_.html" class="tsd-kind-icon">"interfaces/entities/animation"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_audio_.html" class="tsd-kind-icon">"interfaces/entities/audio"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_chat_.html" class="tsd-kind-icon">"interfaces/entities/chat"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_chat_member_.html" class="tsd-kind-icon">"interfaces/entities/chat-<wbr>member"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_chat_photo_.html" class="tsd-kind-icon">"interfaces/entities/chat-<wbr>photo"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_contact_.html" class="tsd-kind-icon">"interfaces/entities/contact"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_document_.html" class="tsd-kind-icon">"interfaces/entities/document"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_file_.html" class="tsd-kind-icon">"interfaces/entities/file"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_force_reply_.html" class="tsd-kind-icon">"interfaces/entities/force-<wbr>reply"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_game_.html" class="tsd-kind-icon">"interfaces/entities/game"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_inline_keyboard_button_.html" class="tsd-kind-icon">"interfaces/entities/inline-<wbr>keyboard-<wbr>button"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_inline_keyboard_markup_.html" class="tsd-kind-icon">"interfaces/entities/inline-<wbr>keyboard-<wbr>markup"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_keyboard_button_.html" class="tsd-kind-icon">"interfaces/entities/keyboard-<wbr>button"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_location_.html" class="tsd-kind-icon">"interfaces/entities/location"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_message_.html" class="tsd-kind-icon">"interfaces/entities/message"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_message_entity_.html" class="tsd-kind-icon">"interfaces/entities/message-<wbr>entity"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_payments_invoice_.html" class="tsd-kind-icon">"interfaces/entities/payments/invoice"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_payments_order_info_.html" class="tsd-kind-icon">"interfaces/entities/payments/order-<wbr>info"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_payments_shipping_address_.html" class="tsd-kind-icon">"interfaces/entities/payments/shipping-<wbr>address"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_payments_successful_payment_.html" class="tsd-kind-icon">"interfaces/entities/payments/successful-<wbr>payment"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_photo_size_.html" class="tsd-kind-icon">"interfaces/entities/photo-<wbr>size"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_reply_keyboard_markup_.html" class="tsd-kind-icon">"interfaces/entities/reply-<wbr>keyboard-<wbr>markup"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_reply_keyboard_remove_.html" class="tsd-kind-icon">"interfaces/entities/reply-<wbr>keyboard-<wbr>remove"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_sticker_.html" class="tsd-kind-icon">"interfaces/entities/sticker"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_user_.html" class="tsd-kind-icon">"interfaces/entities/user"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_user_profile_photos_.html" class="tsd-kind-icon">"interfaces/entities/user-<wbr>profile-<wbr>photos"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_venue_.html" class="tsd-kind-icon">"interfaces/entities/venue"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_video_.html" class="tsd-kind-icon">"interfaces/entities/video"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_video_note_.html" class="tsd-kind-icon">"interfaces/entities/video-<wbr>note"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_entities_voice_.html" class="tsd-kind-icon">"interfaces/entities/voice"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_answer_callback_query_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/answer-<wbr>callback-<wbr>query-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_delete_chat_photo_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/delete-<wbr>chat-<wbr>photo-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_export_chat_invite_link_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/export-<wbr>chat-<wbr>invite-<wbr>link-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_get_chat_administrators_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/get-<wbr>chat-<wbr>administrators-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_get_chat_member_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/get-<wbr>chat-<wbr>member-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_get_chat_members_count_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/get-<wbr>chat-<wbr>members-<wbr>count-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_get_chat_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/get-<wbr>chat-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_get_file_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/get-<wbr>file-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_get_user_profile_photos_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/get-<wbr>user-<wbr>profile-<wbr>photos-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_kick_chat_member_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/kick-<wbr>chat-<wbr>member-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_leave_chat_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/leave-<wbr>chat-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_pin_chat_message_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/pin-<wbr>chat-<wbr>message-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_promote_chat_member_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/promote-<wbr>chat-<wbr>member-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_restrict_chat_member_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/restrict-<wbr>chat-<wbr>member-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_set_chat_description_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/set-<wbr>chat-<wbr>description-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_set_chat_photo_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/set-<wbr>chat-<wbr>photo-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_set_chat_title_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/set-<wbr>chat-<wbr>title-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_unban_chat_member_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/unban-<wbr>chat-<wbr>member-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_info_unpin_chat_message_payload_.html" class="tsd-kind-icon">"interfaces/payloads/info/unpin-<wbr>chat-<wbr>message-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_response_generic_response_.html" class="tsd-kind-icon">"interfaces/payloads/response/generic-<wbr>response"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_send_base_send_payload_.html" class="tsd-kind-icon">"interfaces/payloads/send/base-<wbr>send-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_send_forward_message_.html" class="tsd-kind-icon">"interfaces/payloads/send/forward-<wbr>message"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_send_send_audio_payload_.html" class="tsd-kind-icon">"interfaces/payloads/send/send-<wbr>audio-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_send_send_chat_action_payload_.html" class="tsd-kind-icon">"interfaces/payloads/send/send-<wbr>chat-<wbr>action-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_send_send_contact_payload_.html" class="tsd-kind-icon">"interfaces/payloads/send/send-<wbr>contact-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_send_send_document_payload_.html" class="tsd-kind-icon">"interfaces/payloads/send/send-<wbr>document-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_send_send_location_payload_.html" class="tsd-kind-icon">"interfaces/payloads/send/send-<wbr>location-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_send_send_message_payload_.html" class="tsd-kind-icon">"interfaces/payloads/send/send-<wbr>message-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_send_send_photo_payload_.html" class="tsd-kind-icon">"interfaces/payloads/send/send-<wbr>photo-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_send_send_sticker_payload_.html" class="tsd-kind-icon">"interfaces/payloads/send/send-<wbr>sticker-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_send_send_venue_payload_.html" class="tsd-kind-icon">"interfaces/payloads/send/send-<wbr>venue-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_send_send_video_note_payload_.html" class="tsd-kind-icon">"interfaces/payloads/send/send-<wbr>video-<wbr>note-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_send_send_video_payload_.html" class="tsd-kind-icon">"interfaces/payloads/send/send-<wbr>video-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_payloads_send_send_voice_payload_.html" class="tsd-kind-icon">"interfaces/payloads/send/send-<wbr>voice-<wbr>payload"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_services_info_.html" class="tsd-kind-icon">"interfaces/services/info"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_services_messages_.html" class="tsd-kind-icon">"interfaces/services/messages"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_interfaces_telegram_.html" class="tsd-kind-icon">"interfaces/telegram"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_request_.html" class="tsd-kind-icon">"request"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_telegram_services_base_service_.html" class="tsd-kind-icon">"telegram/services/base-<wbr>service"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_telegram_services_info_.html" class="tsd-kind-icon">"telegram/services/info"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_telegram_services_messages_.html" class="tsd-kind-icon">"telegram/services/messages"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_telegram_telegram_.html" class="tsd-kind-icon">"telegram/telegram"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_telegram_telegram_provider_.html" class="tsd-kind-icon">"telegram/telegram-<wbr>provider"</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
+					<li class="globals current ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
