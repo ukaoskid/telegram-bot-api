@@ -2,6 +2,9 @@
 
 Telegram Bot API Client interface.
 
+## Full documentation
+[(https://ukaoskid.github.io/telegram-bot-api/)](https://ukaoskid.github.io/telegram-bot-api/)
+
 ## Installation and use
 
 To install the package just type `npm i telegram-bot-api-client --save`
