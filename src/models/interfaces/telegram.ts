@@ -1,4 +1,4 @@
-import { IMessages } from "./services/messages/messages";
+import { IMessages } from "./services/messages";
 
 export interface ITelegram {
 

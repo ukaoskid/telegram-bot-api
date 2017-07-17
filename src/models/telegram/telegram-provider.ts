@@ -4,6 +4,8 @@ export const TelegramProvider = {
   bot: "/bot",
   method: "POST",
   services: {
+    send: { },
+    info: { },
     getMe: "/getMe",
     sendMessage: "/sendMessage",
     forwardMessage: "/forwardMessage",
@@ -17,6 +19,25 @@ export const TelegramProvider = {
     sendLocation: "/sendLocation",
     sendVenue: "/sendVenue",
     sendContact: "/sendContact",
-    sendChatAction: "/sendChatAction"
+    sendChatAction: "/sendChatAction",
+    getUserProfilePhotos: "/getUserProfilePhotos",
+    getFile: "/getFile",
+    kickChatMember: "kickChatMember/",
+    unbanChatMember: "/unbanChatMember",
+    restrictChatMember: "/restrictChatMember",
+    promoteChatMember: "/promoteChatMember",
+    exportChatInviteLink: "/exportChatInviteLink",
+    setChatPhoto: "/setChatPhoto",
+    deleteChatPhoto: "/deleteChatPhoto",
+    setChatTitle: "/setChatTitle",
+    setChatDescription: "/setChatDescription",
+    pinChatMessage: "/pinChatMessage",
+    unpinChatMessage: "/unpinChatMessage",
+    leaveChat: "/leaveChat",
+    getChat: "/getChat",
+    getChatAdministrators: "/getChatAdministrators",
+    getChatMembersCount: "/getChatMembersCount",
+    getChatMember: "/getChatMember",
+    answerCallbackQuery: "/answerCallbackQuery"
   }
 };

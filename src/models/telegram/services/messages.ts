@@ -1,33 +1,24 @@
-import { IMessages } from "../interfaces/services/messages/messages";
-import { IUser } from "../interfaces/entities/user";
-import { ISendMessagePayload } from "../interfaces/payloads/requests/send-message-payload";
-import { HTTPRequest } from "../request";
-import { TelegramProvider } from "./telegram-provider";
-import { IForwardMessagePayload } from "../interfaces/payloads/requests/forward-message";
-import { ISendPhotoPayload } from "../interfaces/payloads/requests/send-photo-payload";
-import { IMessageResponse } from "../interfaces/payloads/response/message-response";
-import { ISendAudioPayload } from "../interfaces/payloads/requests/send-audio-payload";
-import { ISendDocumentPayload } from "../interfaces/payloads/requests/send-document-payload";
-import { ISendStickerPayload } from "../interfaces/payloads/requests/send-sticker-payload";
-import { ISendVideoPayload } from "../interfaces/payloads/requests/send-video-payload";
-import { ISendVoicePayload } from "../interfaces/payloads/requests/send-voice-payload";
-import { ISendVideoNotePayload } from "../interfaces/payloads/requests/send-video-note-payload";
-import { ISendLocationPayload } from "../interfaces/payloads/requests/send-location-payload";
-import { ISendVenuePayload } from "../interfaces/payloads/requests/send-venue-payload";
-import { ISendContactPayload } from "../interfaces/payloads/requests/send-contact-payload";
-import { ISendChatAction } from "../interfaces/payloads/requests/send-chat-action-payload";
+import { IMessages } from "../../interfaces/services/messages";
+import { IUser } from "../../interfaces/entities/user";
+import { ISendMessagePayload } from "../../interfaces/payloads/send/send-message-payload";
+import { HTTPRequest } from "../../request";
+import { TelegramProvider } from "../telegram-provider";
+import { IForwardMessagePayload } from "../../interfaces/payloads/send/forward-message";
+import { ISendPhotoPayload } from "../../interfaces/payloads/send/send-photo-payload";
+import { IMessageResponse } from "../../interfaces/payloads/response/message-response";
+import { ISendAudioPayload } from "../../interfaces/payloads/send/send-audio-payload";
+import { ISendDocumentPayload } from "../../interfaces/payloads/send/send-document-payload";
+import { ISendStickerPayload } from "../../interfaces/payloads/send/send-sticker-payload";
+import { ISendVideoPayload } from "../../interfaces/payloads/send/send-video-payload";
+import { ISendVoicePayload } from "../../interfaces/payloads/send/send-voice-payload";
+import { ISendVideoNotePayload } from "../../interfaces/payloads/send/send-video-note-payload";
+import { ISendLocationPayload } from "../../interfaces/payloads/send/send-location-payload";
+import { ISendVenuePayload } from "../../interfaces/payloads/send/send-venue-payload";
+import { ISendContactPayload } from "../../interfaces/payloads/send/send-contact-payload";
+import { ISendChatAction } from "../../interfaces/payloads/send/send-chat-action-payload";
+import { BaseService } from "./base-service";
 
-export class Messages implements IMessages {
-
-  private token: string;
-
-  constructor(token: string) {
-    this.token = token;
-  }
-
-  public getMe(): Promise<IUser> {
-    return HTTPRequest.request(null, TelegramProvider.services.getMe, this.token);
-  }
+export class Messages extends BaseService implements IMessages {
 
   public sendMessage(payload: ISendMessagePayload): Promise<IMessageResponse> {
     return HTTPRequest.request(payload, TelegramProvider.services.sendMessage, this.token);

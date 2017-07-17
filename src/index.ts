@@ -1,7 +1,5 @@
 import { Telegram } from "./models/telegram/telegram";
-import { ISendMessagePayload } from "./models/interfaces/payloads/requests/send-message-payload";
-import { IForwardMessagePayload } from "./models/interfaces/payloads/requests/forward-message";
-import { ISendPhotoPayload } from "./models/interfaces/payloads/requests/send-photo-payload";
+import { ISendMessagePayload } from "./models/interfaces/payloads/send/send-message-payload";
 
 let telegram: Telegram = new Telegram("372720809:AAHtX0vmO77v2xeCef9xp9hY021SDhPq3Gc");
 let photo: ISendMessagePayload = {
@@ -15,3 +13,7 @@ telegram.messages.sendMessage(photo).then((userCazzo) => {
 }).catch((error) => {
   console.error("VAFF", JSON.stringify(error));
 });
+
+telegram.info.getMe().then((u) => {
+  console.log("UU", u);
+})
