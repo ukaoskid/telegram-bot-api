@@ -3,7 +3,7 @@
 Telegram Bot API Client interface.
 
 ## Full documentation
-[(https://ukaoskid.github.io/telegram-bot-api/)](https://ukaoskid.github.io/telegram-bot-api/)
+[https://ukaoskid.github.io/telegram-bot-api/](https://ukaoskid.github.io/telegram-bot-api/)
 
 ## Installation and use
 
@@ -53,7 +53,8 @@ telegram.messages.sendMessage(messagePayload)
 
 - [ ] Integrating JSDoc to the project
 - Telegram API Integration
+    - [ ] InputFile mode to send encoded payloads (audio, documents, etc.)
     - [X] Generic available methods
     - [ ] Inline mode
-    - [ ] Updating messages
+    - [ ] Getting updates (bot's incoming updates)
     - [ ] Payments

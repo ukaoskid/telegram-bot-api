@@ -1,7 +1,7 @@
 /**
  * Answer Callback Query API Payload.
  */
-export interface IAnsweCallbackQueryPayload {
+export interface IAnswerCallbackQueryPayload {
 
   /**
    * Unique identifier for the query to be answered.

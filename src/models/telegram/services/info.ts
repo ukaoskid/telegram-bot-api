@@ -26,7 +26,7 @@ import { IGetChatAdministratorsPayload } from "../../interfaces/payloads/info/ge
 import { IChatMember } from "../../interfaces/entities/chat-member";
 import { IGetChatMembersCountPayload } from "../../interfaces/payloads/info/get-chat-members-count-payload";
 import { IGetChatMemberPayload } from "../../interfaces/payloads/info/get-chat-member-payload";
-import { IAnsweCallbackQueryPayload } from "../../interfaces/payloads/info/answer-callback-query-payload";
+import { IAnswerCallbackQueryPayload } from "../../interfaces/payloads/info/answer-callback-query-payload";
 
 export class Info extends BaseService implements IInfo {
 
@@ -106,7 +106,7 @@ export class Info extends BaseService implements IInfo {
     return HTTPRequest.request(payload, TelegramProvider.services.getChatMember, this.token);
   }
 
-  public answerCallbackQuery(payload: IAnsweCallbackQueryPayload): Promise<TelegramResponse<boolean>> {
+  public answerCallbackQuery(payload: IAnswerCallbackQueryPayload): Promise<TelegramResponse<boolean>> {
     return HTTPRequest.request(payload, TelegramProvider.services.answerCallbackQuery, this.token);
   }
 }
