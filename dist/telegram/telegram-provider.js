@@ -39,6 +39,12 @@ exports.TelegramProvider = {
         getChatAdministrators: "/getChatAdministrators",
         getChatMembersCount: "/getChatMembersCount",
         getChatMember: "/getChatMember",
-        answerCallbackQuery: "/answerCallbackQuery"
+        answerCallbackQuery: "/answerCallbackQuery",
+        updates: {
+            getUpdates: "/getUpdates",
+            setWebook: "/setWebook",
+            deleteWebhook: "/deleteWebhook",
+            getWebhookInfo: "/getWebhookInfo"
+        }
     }
 };

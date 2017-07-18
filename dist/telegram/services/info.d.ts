@@ -24,7 +24,7 @@ import { IGetChatAdministratorsPayload } from "../../interfaces/payloads/info/ge
 import { IChatMember } from "../../interfaces/entities/chat-member";
 import { IGetChatMembersCountPayload } from "../../interfaces/payloads/info/get-chat-members-count-payload";
 import { IGetChatMemberPayload } from "../../interfaces/payloads/info/get-chat-member-payload";
-import { IAnsweCallbackQueryPayload } from "../../interfaces/payloads/info/answer-callback-query-payload";
+import { IAnswerCallbackQueryPayload } from "../../interfaces/payloads/info/answer-callback-query-payload";
 export declare class Info extends BaseService implements IInfo {
     getMe(): Promise<TelegramResponse<IUser>>;
     getUserProfilePhotos(payload: IGetUserProfilePhotosPayload): Promise<TelegramResponse<IUserProfilePhotos>>;
@@ -45,5 +45,5 @@ export declare class Info extends BaseService implements IInfo {
     getChatAdministrators(payload: IGetChatAdministratorsPayload): Promise<TelegramResponse<IChatMember[]>>;
     getChatMembersCount(payload: IGetChatMembersCountPayload): Promise<TelegramResponse<number>>;
     getChatMember(payload: IGetChatMemberPayload): Promise<TelegramResponse<IChatMember>>;
-    answerCallbackQuery(payload: IAnsweCallbackQueryPayload): Promise<TelegramResponse<boolean>>;
+    answerCallbackQuery(payload: IAnswerCallbackQueryPayload): Promise<TelegramResponse<boolean>>;
 }

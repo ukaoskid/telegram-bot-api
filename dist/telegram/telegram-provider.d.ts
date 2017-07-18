@@ -38,5 +38,11 @@ export declare const TelegramProvider: {
         getChatMembersCount: string;
         getChatMember: string;
         answerCallbackQuery: string;
+        updates: {
+            getUpdates: string;
+            setWebook: string;
+            deleteWebhook: string;
+            getWebhookInfo: string;
+        };
     };
 };

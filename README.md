@@ -56,5 +56,5 @@ telegram.messages.sendMessage(messagePayload)
     - [ ] InputFile mode to send encoded payloads (audio, documents, etc.)
     - [X] Generic available methods
     - [ ] Inline mode
-    - [ ] Getting updates (bot's incoming updates)
+    - [X] Getting updates (bot's incoming updates)
     - [ ] Payments

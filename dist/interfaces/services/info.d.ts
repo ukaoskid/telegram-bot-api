@@ -22,7 +22,7 @@ import { IGetChatAdministratorsPayload } from "../payloads/info/get-chat-adminis
 import { IChatMember } from "../entities/chat-member";
 import { IGetChatMembersCountPayload } from "../payloads/info/get-chat-members-count-payload";
 import { IGetChatMemberPayload } from "../payloads/info/get-chat-member-payload";
-import { IAnsweCallbackQueryPayload } from "../payloads/info/answer-callback-query-payload";
+import { IAnswerCallbackQueryPayload } from "../payloads/info/answer-callback-query-payload";
 export interface IInfo {
     /**
      * A simple method for testing your bot's auth token. Requires no parameters.
@@ -194,5 +194,5 @@ export interface IInfo {
      * @param payload
      * @returns {Promise<TelegramResponse<boolean>>}
      */
-    answerCallbackQuery(payload: IAnsweCallbackQueryPayload): Promise<TelegramResponse<boolean>>;
+    answerCallbackQuery(payload: IAnswerCallbackQueryPayload): Promise<TelegramResponse<boolean>>;
 }
