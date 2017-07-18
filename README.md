@@ -58,11 +58,15 @@ telegram.messages.sendMessage(messagePayload)
     - [ ] Inline mode
     - [X] Getting updates (bot's incoming updates and webhook management) (added in 1.0.6)
     - [X] Payments (added in 1.0.7)
-    - [ ] Games
+    - [X] Games (added in 1.0.8)
 
 ## Changelog
 
-### 1.0.7 - Current
+### 1.0.8 - Current
+- Added **Games** interface
+- Improved the JSDoc
+
+### 1.0.7
 - Added **Payments** interface
 - Improved the JSDoc
 

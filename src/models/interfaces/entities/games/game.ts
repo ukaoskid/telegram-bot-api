@@ -1,5 +1,5 @@
-import { IPhotoSize } from "./photo-size";
-import { IMessageEntity } from "./message-entity";
+import { IPhotoSize } from "../photo-size";
+import { IMessageEntity } from "../message-entity";
 import { IAnimation } from "./animation";
 
 export interface IGame {

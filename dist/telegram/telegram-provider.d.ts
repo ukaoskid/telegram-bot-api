@@ -49,5 +49,10 @@ export declare const TelegramProvider: {
             answerShippingQuery: string;
             answerPreCheckoutQuery: string;
         };
+        games: {
+            sendGame: string;
+            setGameScore: string;
+            getGameHighScores: string;
+        };
     };
 };

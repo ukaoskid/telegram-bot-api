@@ -49,6 +49,11 @@ export const TelegramProvider = {
       sendInvoice: "/sendInvoice",
       answerShippingQuery: "/answerShippingQuery",
       answerPreCheckoutQuery: "/answerPreCheckoutQuery"
+    },
+    games: {
+      sendGame: "/sendGame",
+      setGameScore: "/setGameScore",
+      getGameHighScores: "/getGameHighScores"
     }
   }
 };

@@ -1,4 +1,4 @@
-import { IPhotoSize } from "./photo-size";
+import { IPhotoSize } from "../photo-size";
 
 export interface IAnimation {
 

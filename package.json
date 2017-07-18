@@ -1,6 +1,6 @@
 {
   "name": "telegram-bot-api-client",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Telegram Bot API",
   "main": "index.js",
   "scripts": {

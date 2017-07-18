@@ -4,7 +4,7 @@ import { IMessageEntity } from "./message-entity";
 import { IAudio } from "./audio";
 import { IPhotoSize } from "./photo-size";
 import { IDocument } from "./document";
-import { IGame } from "./game";
+import { IGame } from "./games/game";
 import { ISticker } from "./sticker";
 import { IVideo } from "./video";
 import { IVoice } from "./voice";
