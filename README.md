@@ -54,8 +54,24 @@ telegram.messages.sendMessage(messagePayload)
 - [ ] Integrating JSDoc to the project
 - Telegram API Integration
     - [ ] InputFile mode to send encoded payloads (audio, documents, etc.)
-    - [X] Generic available methods
+    - [X] Generic available methods (added in 1.0.0)
     - [ ] Inline mode
-    - [X] Getting updates (bot's incoming updates)
-    - [ ] Payments
+    - [X] Getting updates (bot's incoming updates and webhook management) (added in 1.0.6)
+    - [X] Payments (added in 1.0.7)
     - [ ] Games
+
+## Changelog
+
+### 1.0.7 - Current
+- Added **Payments** interface
+- Improved the JSDoc
+
+### 1.0.6
+- Added **Getting updates** interface (bot's incoming updates and webhook mangement)
+- Improved the JSDoc
+
+### 1.0.5 > 1.0.1
+- Improved the JSDoc
+
+### 1.0.0
+- Initial release

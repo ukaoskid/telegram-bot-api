@@ -44,6 +44,11 @@ export const TelegramProvider = {
       setWebook: "/setWebook",
       deleteWebhook: "/deleteWebhook",
       getWebhookInfo: "/getWebhookInfo"
+    },
+    payments: {
+      sendInvoice: "/sendInvoice",
+      answerShippingQuery: "/answerShippingQuery",
+      answerPreCheckoutQuery: "/answerPreCheckoutQuery"
     }
   }
 };

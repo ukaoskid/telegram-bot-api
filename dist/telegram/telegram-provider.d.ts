@@ -44,5 +44,10 @@ export declare const TelegramProvider: {
             deleteWebhook: string;
             getWebhookInfo: string;
         };
+        payments: {
+            sendInvoice: string;
+            answerShippingQuery: string;
+            answerPreCheckoutQuery: string;
+        };
     };
 };
