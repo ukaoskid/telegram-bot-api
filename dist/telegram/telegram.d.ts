@@ -4,6 +4,7 @@ import { Info } from "./services/info";
 import { Updates } from "./services/updates";
 import { Payments } from "./services/payments";
 import { Games } from "./services/games";
+import { Inline } from "./services/inline";
 export declare class Telegram implements ITelegram {
     private token;
     messages: Messages;
@@ -11,5 +12,6 @@ export declare class Telegram implements ITelegram {
     updates: Updates;
     payments: Payments;
     games: Games;
+    inline: Inline;
     constructor(token: string);
 }

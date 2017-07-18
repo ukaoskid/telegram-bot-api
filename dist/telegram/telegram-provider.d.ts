@@ -54,5 +54,8 @@ export declare const TelegramProvider: {
             setGameScore: string;
             getGameHighScores: string;
         };
+        inline: {
+            answerInlineQuery: string;
+        };
     };
 };

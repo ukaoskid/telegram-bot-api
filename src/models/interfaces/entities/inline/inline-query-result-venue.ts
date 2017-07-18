@@ -8,63 +8,63 @@ import { IInputMessageContent } from "./input-message-content";
  */
 export interface IInlineQueryResultVenue extends IInlineQueryResult {
 
-    /**
-     * Type of the result, must be venue.
-     */
-    type: string,
+  /**
+   * Type of the result, must be venue.
+   */
+  type: string,
 
-    /**
-     * Unique identifier for this result, 1-64 Bytes.
-     */
-    id: string,
+  /**
+   * Unique identifier for this result, 1-64 Bytes.
+   */
+  id: string,
 
-    /**
-     * Latitude of the venue location in degrees.
-     */
-    latitude: number,
+  /**
+   * Latitude of the venue location in degrees.
+   */
+  latitude: number,
 
-    /**
-     * Longitude of the venue location in degrees.
-     */
-    longitude: number,
+  /**
+   * Longitude of the venue location in degrees.
+   */
+  longitude: number,
 
-    /**
-     * Title of the venue.
-     */
-    title: string,
+  /**
+   * Title of the venue.
+   */
+  title: string,
 
-    /**
-     * Address of the venue.
-     */
-    address: string,
+  /**
+   * Address of the venue.
+   */
+  address: string,
 
-    /**
-     * Foursquare identifier of the venue if known.
-     */
-    foursquare_id?: string,
+  /**
+   * Foursquare identifier of the venue if known.
+   */
+  foursquare_id?: string,
 
-    /**
-     * Inline keyboard attached to the message.
-     */
-    reply_markup?: IInlineKeyboardMarkup,
+  /**
+   * Inline keyboard attached to the message.
+   */
+  reply_markup?: IInlineKeyboardMarkup,
 
-    /**
-     * Content of the message to be sent instead of the venue.
-     */
-    input_message_content?: IInputMessageContent,
+  /**
+   * Content of the message to be sent instead of the venue.
+   */
+  input_message_content?: IInputMessageContent,
 
-    /**
-     * Url of the thumbnail for the result.
-     */
-    thumb_url?: string,
+  /**
+   * Url of the thumbnail for the result.
+   */
+  thumb_url?: string,
 
-    /**
-     * Thumbnail width.
-     */
-    thumb_width?: number,
+  /**
+   * Thumbnail width.
+   */
+  thumb_width?: number,
 
-    /**
-     * Thumbnail height.
-     */
-    thumb_height?: number
+  /**
+   * Thumbnail height.
+   */
+  thumb_height?: number
 }

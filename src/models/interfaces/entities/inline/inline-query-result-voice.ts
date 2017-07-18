@@ -10,43 +10,43 @@ import { IInputMessageContent } from "./input-message-content";
  */
 export interface IInlineQueryResultVoice extends IInlineQueryResult {
 
-    /**
-     * Type of the result, must be voice.
-     */
-    type: string,
+  /**
+   * Type of the result, must be voice.
+   */
+  type: string,
 
-    /**
-     * Unique identifier for this result, 1-64 bytes.
-     */
-    id: string,
+  /**
+   * Unique identifier for this result, 1-64 bytes.
+   */
+  id: string,
 
-    /**
-     * A valid URL for the voice recording.
-     */
-    voice_url: string,
+  /**
+   * A valid URL for the voice recording.
+   */
+  voice_url: string,
 
-    /**
-     * Recording title.
-     */
-    title: string,
+  /**
+   * Recording title.
+   */
+  title: string,
 
-    /**
-     * Caption, 0-200 characters.
-     */
-    caption: string,
+  /**
+   * Caption, 0-200 characters.
+   */
+  caption: string,
 
-    /**
-     * Recording duration in seconds.
-     */
-    voice_duration?: number,
+  /**
+   * Recording duration in seconds.
+   */
+  voice_duration?: number,
 
-    /**
-     * Inline keyboard attached to the message.
-     */
-    reply_markup?: IInlineKeyboardMarkup,
+  /**
+   * Inline keyboard attached to the message.
+   */
+  reply_markup?: IInlineKeyboardMarkup,
 
-    /**
-     * Content of the message to be sent instead of the voice recording.
-     */
-    input_message_content?: IInputMessageContent
+  /**
+   * Content of the message to be sent instead of the voice recording.
+   */
+  input_message_content?: IInputMessageContent
 }

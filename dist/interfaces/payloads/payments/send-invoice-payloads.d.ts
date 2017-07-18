@@ -1,5 +1,5 @@
 import { ILabeledPrice } from "../../entities/payments/labeled-price";
-import { IInlineKeyboardMarkup } from "../../entities/inline-keyboard-markup";
+import { IInlineKeyboardMarkup } from "../../entities/inline/inline-keyboard-markup";
 /**
  * Send Invoice API Payload.
  */

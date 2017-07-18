@@ -10,58 +10,58 @@ import { IInputMessageContent } from "./input-message-content";
  */
 export interface IInlineQueryResultMpeg4Gif extends IInlineQueryResult {
 
-    /**
-     * Type of the result, must be mpeg4_gif.
-     */
-    type: string,
+  /**
+   * Type of the result, must be mpeg4_gif.
+   */
+  type: string,
 
-    /**
-     * Unique identifier for this result, 1-64 bytes.
-     */
-    id: string,
+  /**
+   * Unique identifier for this result, 1-64 bytes.
+   */
+  id: string,
 
-    /**
-     * A valid URL for the MP4 file. File size must not exceed 1MB.
-     */
-    mpeg4_url?: string,
+  /**
+   * A valid URL for the MP4 file. File size must not exceed 1MB.
+   */
+  mpeg4_url?: string,
 
-    /**
-     * Video width.
-     */
-    mpeg4_width?: number,
+  /**
+   * Video width.
+   */
+  mpeg4_width?: number,
 
-    /**
-     * Video height.
-     */
-    mpeg4_height?: number,
+  /**
+   * Video height.
+   */
+  mpeg4_height?: number,
 
-    /**
-     * Video duration.
-     */
-    mpeg4_duration?: number,
+  /**
+   * Video duration.
+   */
+  mpeg4_duration?: number,
 
-    /**
-     * URL of the static thumbnail (jpeg or gif) for the result.
-     */
-    thumb_url: string,
+  /**
+   * URL of the static thumbnail (jpeg or gif) for the result.
+   */
+  thumb_url: string,
 
-    /**
-     * Title for the result.
-     */
-    title?: string,
+  /**
+   * Title for the result.
+   */
+  title?: string,
 
-    /**
-     * Caption of the MPEG-4 file to be sent, 0-200 characters.
-     */
-    caption?: string,
+  /**
+   * Caption of the MPEG-4 file to be sent, 0-200 characters.
+   */
+  caption?: string,
 
-    /**
-     * Inline keyboard attached to the message.
-     */
-    reply_markup?: IInlineKeyboardMarkup,
+  /**
+   * Inline keyboard attached to the message.
+   */
+  reply_markup?: IInlineKeyboardMarkup,
 
-    /**
-     * Content of the message to be sent instead of the video animation.
-     */
-    input_message_content?: IInputMessageContent
+  /**
+   * Content of the message to be sent instead of the video animation.
+   */
+  input_message_content?: IInputMessageContent
 }

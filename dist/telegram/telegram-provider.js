@@ -55,6 +55,9 @@ exports.TelegramProvider = {
             sendGame: "/sendGame",
             setGameScore: "/setGameScore",
             getGameHighScores: "/getGameHighScores"
+        },
+        inline: {
+            answerInlineQuery: "/answerInlineQuery"
         }
     }
 };

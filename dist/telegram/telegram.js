@@ -5,6 +5,7 @@ const info_1 = require("./services/info");
 const updates_1 = require("./services/updates");
 const payments_1 = require("./services/payments");
 const games_1 = require("./services/games");
+const inline_1 = require("./services/inline");
 class Telegram {
     constructor(token) {
         this.token = token;
@@ -13,6 +14,7 @@ class Telegram {
         this.updates = new updates_1.Updates(token);
         this.payments = new payments_1.Payments(token);
         this.games = new games_1.Games(token);
+        this.inline = new inline_1.Inline(token);
     }
 }
 exports.Telegram = Telegram;

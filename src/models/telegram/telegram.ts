@@ -4,6 +4,7 @@ import { Info } from "./services/info";
 import { Updates } from "./services/updates";
 import { Payments } from "./services/payments";
 import { Games } from "./services/games";
+import { Inline } from "./services/inline";
 
 export class Telegram implements ITelegram {
 
@@ -13,6 +14,7 @@ export class Telegram implements ITelegram {
   public updates: Updates;
   public payments: Payments;
   public games: Games;
+  public inline: Inline;
 
   constructor(token: string) {
 
@@ -22,5 +24,6 @@ export class Telegram implements ITelegram {
     this.updates = new Updates(token);
     this.payments = new Payments(token);
     this.games = new Games(token);
+    this.inline = new Inline(token);
   }
 }

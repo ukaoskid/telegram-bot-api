@@ -55,14 +55,18 @@ telegram.messages.sendMessage(messagePayload)
 - Telegram API Integration
     - [ ] InputFile mode to send encoded payloads (audio, documents, etc.)
     - [X] Generic available methods (added in 1.0.0)
-    - [ ] Inline mode
+    - [X] Inline mode
     - [X] Getting updates (bot's incoming updates and webhook management) (added in 1.0.6)
     - [X] Payments (added in 1.0.7)
     - [X] Games (added in 1.0.8)
 
 ## Changelog
 
-### 1.0.8 - Current
+### 1.0.9 - Current
+- Added **Inline mode** interface
+- Improved the JSDoc
+
+### 1.0.8
 - Added **Games** interface
 - Improved the JSDoc
 

@@ -8,53 +8,53 @@ import { IInputMessageContent } from "./input-message-content";
  */
 export interface IInlineQueryResultLocation extends IInlineQueryResult {
 
-    /**
-     * Type of the result, must be location.
-     */
-    type: string,
+  /**
+   * Type of the result, must be location.
+   */
+  type: string,
 
-    /**
-     * Unique identifier for this result, 1-64 Bytes.
-     */
-    id: string,
+  /**
+   * Unique identifier for this result, 1-64 Bytes.
+   */
+  id: string,
 
-    /**
-     * Location latitude in degrees.
-     */
-    latitude: number,
+  /**
+   * Location latitude in degrees.
+   */
+  latitude: number,
 
-    /**
-     * Location longitude in degrees.
-     */
-    longitude: number,
+  /**
+   * Location longitude in degrees.
+   */
+  longitude: number,
 
-    /**
-     * Location title.
-     */
-    title: string,
+  /**
+   * Location title.
+   */
+  title: string,
 
-    /**
-     * Inline keyboard attached to the message.
-     */
-    reply_markup?: IInlineKeyboardMarkup,
+  /**
+   * Inline keyboard attached to the message.
+   */
+  reply_markup?: IInlineKeyboardMarkup,
 
-    /**
-     * Content of the message to be sent instead of the location.
-     */
-    input_message_content?: IInputMessageContent,
+  /**
+   * Content of the message to be sent instead of the location.
+   */
+  input_message_content?: IInputMessageContent,
 
-    /**
-     * Url of the thumbnail for the result.
-     */
-    thumb_url?: string,
+  /**
+   * Url of the thumbnail for the result.
+   */
+  thumb_url?: string,
 
-    /**
-     * Thumbnail width.
-     */
-    thumb_width?: number
+  /**
+   * Thumbnail width.
+   */
+  thumb_width?: number,
 
-    /**
-     * Thumbnail height.
-     */
-    thumb_height?: number
+  /**
+   * Thumbnail height.
+   */
+  thumb_height?: number
 }

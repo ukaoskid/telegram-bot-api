@@ -1,4 +1,4 @@
-import { IInlineKeyboardMarkup } from "../../entities/inline-keyboard-markup";
+import { IInlineKeyboardMarkup } from "../../entities/inline/inline-keyboard-markup";
 import { IReplyKeyboardMarkup } from "../../entities/reply-keyboard-markup";
 import { IReplyKeyboardRemove } from "../../entities/reply-keyboard-remove";
 import { IForceReply } from "../../entities/force-reply";
