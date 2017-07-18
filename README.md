@@ -58,3 +58,4 @@ telegram.messages.sendMessage(messagePayload)
     - [ ] Inline mode
     - [X] Getting updates (bot's incoming updates)
     - [ ] Payments
+    - [ ] Games
