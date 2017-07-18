@@ -1,6 +1,6 @@
 import { IMessage } from "../message";
 import { IInlineQuery } from "../inline-query";
-import { IChosenInlineResult } from "../chosen-inline-result";
+import { IChosenInlineResult } from "../inline/chosen-inline-result";
 import { ICallbackQuery } from "../callback-query";
 import { IShippingQuery } from "../payments/shipping-query";
 import { IPreCheckoutQuery } from "../payments/pre-checkout-query";

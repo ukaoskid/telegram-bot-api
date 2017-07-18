@@ -1,4 +1,4 @@
-import { IInlineKeyboardButton } from "./inline-keyboard-button";
+import { IInlineKeyboardButton } from "../inline-keyboard-button";
 
 export interface IInlineKeyboardMarkup {
 
