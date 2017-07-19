@@ -1,4 +1,5 @@
 import { IBaseSendPayload } from "./base-send-payload";
+import { InputFile } from "../../../telegram/types/input-file";
 
 /**
  * Send Voice API Payload
@@ -10,7 +11,7 @@ export interface ISendVoicePayload extends IBaseSendPayload {
    * pass an HTTP URL as a String for Telegram to get a video from the Internet,
    * or upload a new video using multipart/form-data
    */
-  voice: string,
+  voice: InputFile | string,
 
   /**
    * Voice message caption, 0-200 characters.

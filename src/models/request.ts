@@ -1,5 +1,4 @@
 import * as rp from "request-promise-native";
-import * as qs from "querystring";
 import { TelegramProvider } from "./telegram/telegram-provider";
 
 export class HTTPRequest {
@@ -8,14 +7,13 @@ export class HTTPRequest {
 
     const query = TelegramProvider.baseUri + TelegramProvider.bot + token + uri;
     let options = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
       method: TelegramProvider.method,
       uri: query,
-      body: qs.stringify(payload),
+      formData: payload,
       json: true
     };
+
+    console.log(JSON.stringify(options));
 
     return rp(options).promise()
       .catch((error) => {

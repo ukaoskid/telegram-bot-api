@@ -22,11 +22,14 @@ The bot creation happens entirely on the chat by using commands.
 - Just if you want, you can set the bot as an entity that can join Telegram groups: `/setjoingroups`
     - **@BotFather** will ask you to `enable` or `disable` the bot to join groups: `enable | disable`
 
-Now you have activated your bot. Let's try to send a message:
+Now you have activated your bot. Let's try to send a message or a photo:
 
 ```javascript
 import { Telegram } from "telegram-bot-api-client/dist/telegram/telegram";
 import { ISendMessagePayload } from "telegram-bot-api-client/dist/interfaces/payloads/send/send-message-payload";
+import { ISendPhotoPayload } from "telegram-bot-api-client/dist/interfaces/payloads/send/send-photo-payload";
+import { InputFile } from "./models/telegram/types/input-file";
+import * as fs from "fs";
 
 let botToken = "the token you got from @BotFather";
 let telegram: Telegram = new Telegram(botToken);
@@ -35,9 +38,13 @@ let userChatId: 12345678;
 /*
  * Generally, you need to know the Telegram ID of the user you want to involve in the action.
  */
+
+/*
+ * Sending a message
+ */
 let messagePayload: ISendMessagePayload = {
   chat_id: userChatId,
-  text: "testing a text message"
+  text: "Testing a text message"
 }
 
 telegram.messages.sendMessage(messagePayload)
@@ -47,22 +54,48 @@ telegram.messages.sendMessage(messagePayload)
     .catch((error) => {
       console.error(JSON.stringify(error));
     });
+
+/*
+ * Sending a photo
+ */
+let photoStream = fs.createReadStream("/path/to/file/logo.png");
+
+let photoPayload: ISendPhotoPayload = {
+  chat_id: userChatId,
+  caption: "This logo is amazing!",
+  photo: new InputFile(photoStream)
+};
+
+telegram.messages.sendPhoto(photoPayload)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error(JSON.stringify(error));
+    });
 ```
+
+
 
 ## What's on the plan to do
 
 - [ ] Integrating JSDoc to the project
 - Telegram API Integration
-    - [ ] InputFile mode to send encoded payloads (audio, documents, etc.)
+    - [X] InputFile mode to send file streams payloads (audio, documents, etc.) (added in 1.0.10)
     - [X] Generic available methods (added in 1.0.0)
     - [X] Inline mode
     - [X] Getting updates (bot's incoming updates and webhook management) (added in 1.0.6)
+    - [ ] Update messages (edit sent messages etc.)
     - [X] Payments (added in 1.0.7)
     - [X] Games (added in 1.0.8)
 
 ## Changelog
 
-### 1.0.9 - Current
+### 1.0.10 - Current
+- Added **InputFile** to send file streams payloads (audio, documents, etc.)
+- Improved the JSDoc
+
+### 1.0.9
 - Added **Inline mode** interface
 - Improved the JSDoc
 

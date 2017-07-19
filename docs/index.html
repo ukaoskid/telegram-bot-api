@@ -925,6 +925,9 @@ img { max-width: 100%; }
 			<a href="classes/inline.html" class="tsd-kind-icon">Inline</a>
 		</li>
 		<li class=" tsd-kind-class">
+			<a href="classes/inputfile.html" class="tsd-kind-icon">Input<wbr>File</a>
+		</li>
+		<li class=" tsd-kind-class">
 			<a href="classes/messages.html" class="tsd-kind-icon">Messages</a>
 		</li>
 		<li class=" tsd-kind-class">
@@ -1284,6 +1287,9 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-interface tsd-has-type-parameter">
 			<a href="interfaces/telegramresponse.html" class="tsd-kind-icon">Telegram<wbr>Response</a>
 		</li>
+		<li class=" tsd-kind-function tsd-is-not-exported">
+			<a href="globals.html#inputfilepattern" class="tsd-kind-icon">Input<wbr>File<wbr>Pattern</a>
+		</li>
 		<li class=" tsd-kind-object-literal">
 			<a href="globals.html#telegramprovider" class="tsd-kind-icon">Telegram<wbr>Provider</a>
 		</li>
@@ -1316,9 +1322,12 @@ img { max-width: 100%; }
 					</ul>
 				</li>
 			</ul>
-			<p>Now you have activated your bot. Let&#39;s try to send a message:</p>
+			<p>Now you have activated your bot. Let&#39;s try to send a message or a photo:</p>
 			<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { Telegram } <span class="hljs-keyword">from</span> <span class="hljs-string">"telegram-bot-api-client/dist/telegram/telegram"</span>;
 <span class="hljs-keyword">import</span> { ISendMessagePayload } <span class="hljs-keyword">from</span> <span class="hljs-string">"telegram-bot-api-client/dist/interfaces/payloads/send/send-message-payload"</span>;
+<span class="hljs-keyword">import</span> { ISendPhotoPayload } <span class="hljs-keyword">from</span> <span class="hljs-string">"telegram-bot-api-client/dist/interfaces/payloads/send/send-photo-payload"</span>;
+<span class="hljs-keyword">import</span> { InputFile } <span class="hljs-keyword">from</span> <span class="hljs-string">"./models/telegram/types/input-file"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">"fs"</span>;
 
 <span class="hljs-keyword">let</span> botToken = <span class="hljs-string">"the token you got from @BotFather"</span>;
 <span class="hljs-keyword">let</span> telegram: Telegram = <span class="hljs-keyword">new</span> Telegram(botToken);
@@ -1327,12 +1336,35 @@ img { max-width: 100%; }
 <span class="hljs-comment">/*
  * Generally, you need to know the Telegram ID of the user you want to involve in the action.
  */</span>
+
+<span class="hljs-comment">/*
+ * Sending a message
+ */</span>
 <span class="hljs-keyword">let</span> messagePayload: ISendMessagePayload = {
   <span class="hljs-attr">chat_id</span>: userChatId,
-  <span class="hljs-attr">text</span>: <span class="hljs-string">"testing a text message"</span>
+  <span class="hljs-attr">text</span>: <span class="hljs-string">"Testing a text message"</span>
 }
 
 telegram.messages.sendMessage(messagePayload)
+    .then(<span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
+      <span class="hljs-built_in">console</span>.log(response);
+    })
+    .catch(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+      <span class="hljs-built_in">console</span>.error(<span class="hljs-built_in">JSON</span>.stringify(error));
+    });
+
+<span class="hljs-comment">/*
+ * Sending a photo
+ */</span>
+<span class="hljs-keyword">let</span> photoStream = fs.createReadStream(<span class="hljs-string">"/path/to/file/logo.png"</span>);
+
+<span class="hljs-keyword">let</span> photoPayload: ISendPhotoPayload = {
+  <span class="hljs-attr">chat_id</span>: userChatId,
+  <span class="hljs-attr">caption</span>: <span class="hljs-string">"This logo is amazing!"</span>,
+  <span class="hljs-attr">photo</span>: <span class="hljs-keyword">new</span> InputFile(photoStream)
+};
+
+telegram.messages.sendPhoto(photoPayload)
     .then(<span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
       <span class="hljs-built_in">console</span>.log(response);
     })
@@ -1344,17 +1376,23 @@ telegram.messages.sendMessage(messagePayload)
 			<ul>
 				<li>[ ] Integrating JSDoc to the project</li>
 				<li>Telegram API Integration<ul>
-						<li>[ ] InputFile mode to send encoded payloads (audio, documents, etc.)</li>
+						<li>[X] InputFile mode to send file streams payloads (audio, documents, etc.) (added in 1.0.10)</li>
 						<li>[X] Generic available methods (added in 1.0.0)</li>
 						<li>[X] Inline mode</li>
 						<li>[X] Getting updates (bot&#39;s incoming updates and webhook management) (added in 1.0.6)</li>
+						<li>[ ] Update messages (edit sent messages etc.)</li>
 						<li>[X] Payments (added in 1.0.7)</li>
 						<li>[X] Games (added in 1.0.8)</li>
 					</ul>
 				</li>
 			</ul>
 			<h2 id="changelog">Changelog</h2>
-			<h3 id="1-0-9-current">1.0.9 - Current</h3>
+			<h3 id="1-0-10-current">1.0.10 - Current</h3>
+			<ul>
+				<li>Added <strong>InputFile</strong> to send file streams payloads (audio, documents, etc.)</li>
+				<li>Improved the JSDoc</li>
+			</ul>
+			<h3 id="1-0-9">1.0.9</h3>
 			<ul>
 				<li>Added <strong>Inline mode</strong> interface</li>
 				<li>Improved the JSDoc</li>
@@ -1396,6 +1434,7 @@ telegram.messages.sendMessage(messagePayload)
 							<li class="tsd-kind-class"><a href="classes/httprequest.html" class="tsd-kind-icon">HTTPRequest</a></li>
 							<li class="tsd-kind-class"><a href="classes/info.html" class="tsd-kind-icon">Info</a></li>
 							<li class="tsd-kind-class"><a href="classes/inline.html" class="tsd-kind-icon">Inline</a></li>
+							<li class="tsd-kind-class"><a href="classes/inputfile.html" class="tsd-kind-icon">Input<wbr>File</a></li>
 							<li class="tsd-kind-class"><a href="classes/messages.html" class="tsd-kind-icon">Messages</a></li>
 							<li class="tsd-kind-class"><a href="classes/payments.html" class="tsd-kind-icon">Payments</a></li>
 							<li class="tsd-kind-class"><a href="classes/telegram.html" class="tsd-kind-icon">Telegram</a></li>
@@ -1523,6 +1562,12 @@ telegram.messages.sendMessage(messagePayload)
 							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/telegramresponse.html" class="tsd-kind-icon">Telegram<wbr>Response</a></li>
 						</ul>
 					</section>
+					<section class="tsd-index-section tsd-is-not-exported">
+						<h3>Functions</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#inputfilepattern" class="tsd-kind-icon">Input<wbr>File<wbr>Pattern</a></li>
+						</ul>
+					</section>
 					<section class="tsd-index-section ">
 						<h3>Object literals</h3>
 						<ul class="tsd-index-list">
@@ -1530,6 +1575,57 @@ telegram.messages.sendMessage(messagePayload)
 						</ul>
 					</section>
 				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+			<h2>Functions</h2>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
+				<a name="inputfilepattern" class="tsd-anchor"></a>
+				<h3>Input<wbr>File<wbr>Pattern</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
+					<li class="tsd-signature tsd-kind-icon">Input<wbr>File<wbr>Pattern<span class="tsd-signature-symbol">(</span>filePath<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, readStream<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Stream</span>, filename<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, contentType<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in telegram/types/input-file.ts:5</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> filePath: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> readStream: <span class="tsd-signature-type">Stream</span><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> filename: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> contentType: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Stream</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>content<wbr>Type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
@@ -1540,7 +1636,7 @@ telegram.messages.sendMessage(messagePayload)
 				<div class="tsd-signature tsd-kind-icon">Telegram<wbr>Provider<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L1">telegram/telegram-provider.ts:1</a></li>
+						<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L1">telegram/telegram-provider.ts:1</a></li>
 					</ul>
 				</aside>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1549,7 +1645,7 @@ telegram.messages.sendMessage(messagePayload)
 					<div class="tsd-signature tsd-kind-icon">base<wbr>Uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;https://api.telegram.org&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L3">telegram/telegram-provider.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L3">telegram/telegram-provider.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1559,7 +1655,7 @@ telegram.messages.sendMessage(messagePayload)
 					<div class="tsd-signature tsd-kind-icon">bot<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/bot&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L4">telegram/telegram-provider.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L4">telegram/telegram-provider.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1569,7 +1665,7 @@ telegram.messages.sendMessage(messagePayload)
 					<div class="tsd-signature tsd-kind-icon">method<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;POST&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L5">telegram/telegram-provider.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L5">telegram/telegram-provider.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1579,7 +1675,7 @@ telegram.messages.sendMessage(messagePayload)
 					<div class="tsd-signature tsd-kind-icon">services<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L6">telegram/telegram-provider.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L6">telegram/telegram-provider.ts:6</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1588,7 +1684,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">answer<wbr>Callback<wbr>Query<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/answerCallbackQuery&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L41">telegram/telegram-provider.ts:41</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L41">telegram/telegram-provider.ts:41</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1598,7 +1694,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">delete<wbr>Chat<wbr>Photo<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/deleteChatPhoto&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L31">telegram/telegram-provider.ts:31</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L31">telegram/telegram-provider.ts:31</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1608,7 +1704,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">export<wbr>Chat<wbr>Invite<wbr>Link<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/exportChatInviteLink&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L29">telegram/telegram-provider.ts:29</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L29">telegram/telegram-provider.ts:29</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1618,7 +1714,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">forward<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/forwardMessage&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L11">telegram/telegram-provider.ts:11</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L11">telegram/telegram-provider.ts:11</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1628,7 +1724,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">get<wbr>Chat<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/getChat&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L37">telegram/telegram-provider.ts:37</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L37">telegram/telegram-provider.ts:37</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1638,7 +1734,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">get<wbr>Chat<wbr>Administrators<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/getChatAdministrators&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L38">telegram/telegram-provider.ts:38</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L38">telegram/telegram-provider.ts:38</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1648,7 +1744,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">get<wbr>Chat<wbr>Member<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/getChatMember&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L40">telegram/telegram-provider.ts:40</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L40">telegram/telegram-provider.ts:40</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1658,7 +1754,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">get<wbr>Chat<wbr>Members<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/getChatMembersCount&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L39">telegram/telegram-provider.ts:39</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L39">telegram/telegram-provider.ts:39</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1668,7 +1764,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">get<wbr>File<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/getFile&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L24">telegram/telegram-provider.ts:24</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L24">telegram/telegram-provider.ts:24</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1678,7 +1774,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">get<wbr>Me<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/getMe&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L9">telegram/telegram-provider.ts:9</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L9">telegram/telegram-provider.ts:9</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1688,7 +1784,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">get<wbr>User<wbr>Profile<wbr>Photos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/getUserProfilePhotos&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L23">telegram/telegram-provider.ts:23</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L23">telegram/telegram-provider.ts:23</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1698,7 +1794,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">info<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L8">telegram/telegram-provider.ts:8</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L8">telegram/telegram-provider.ts:8</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -1713,7 +1809,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">kick<wbr>Chat<wbr>Member<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;kickChatMember/&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L25">telegram/telegram-provider.ts:25</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L25">telegram/telegram-provider.ts:25</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1723,7 +1819,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">leave<wbr>Chat<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/leaveChat&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L36">telegram/telegram-provider.ts:36</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L36">telegram/telegram-provider.ts:36</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1733,7 +1829,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">pin<wbr>Chat<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/pinChatMessage&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L34">telegram/telegram-provider.ts:34</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L34">telegram/telegram-provider.ts:34</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1743,7 +1839,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">promote<wbr>Chat<wbr>Member<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/promoteChatMember&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L28">telegram/telegram-provider.ts:28</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L28">telegram/telegram-provider.ts:28</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1753,7 +1849,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">restrict<wbr>Chat<wbr>Member<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/restrictChatMember&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L27">telegram/telegram-provider.ts:27</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L27">telegram/telegram-provider.ts:27</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1763,7 +1859,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">send<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L7">telegram/telegram-provider.ts:7</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L7">telegram/telegram-provider.ts:7</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -1778,7 +1874,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">send<wbr>Audio<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/sendAudio&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L13">telegram/telegram-provider.ts:13</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L13">telegram/telegram-provider.ts:13</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1788,7 +1884,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">send<wbr>Chat<wbr>Action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/sendChatAction&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L22">telegram/telegram-provider.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L22">telegram/telegram-provider.ts:22</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1798,7 +1894,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">send<wbr>Contact<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/sendContact&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L21">telegram/telegram-provider.ts:21</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L21">telegram/telegram-provider.ts:21</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1808,7 +1904,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">send<wbr>Document<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/sendDocument&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L14">telegram/telegram-provider.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L14">telegram/telegram-provider.ts:14</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1818,7 +1914,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">send<wbr>Location<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/sendLocation&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L19">telegram/telegram-provider.ts:19</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L19">telegram/telegram-provider.ts:19</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1828,7 +1924,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">send<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/sendMessage&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L10">telegram/telegram-provider.ts:10</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L10">telegram/telegram-provider.ts:10</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1838,7 +1934,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">send<wbr>Photo<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/sendPhoto&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L12">telegram/telegram-provider.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L12">telegram/telegram-provider.ts:12</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1848,7 +1944,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">send<wbr>Sticker<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/sendSticker&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L15">telegram/telegram-provider.ts:15</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L15">telegram/telegram-provider.ts:15</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1858,7 +1954,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">send<wbr>Venue<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/sendVenue&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L20">telegram/telegram-provider.ts:20</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L20">telegram/telegram-provider.ts:20</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1868,7 +1964,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">send<wbr>Video<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/sendVideo&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L16">telegram/telegram-provider.ts:16</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L16">telegram/telegram-provider.ts:16</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1878,7 +1974,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">send<wbr>Video<wbr>Note<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/sendVideoNote&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L18">telegram/telegram-provider.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L18">telegram/telegram-provider.ts:18</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1888,7 +1984,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">send<wbr>Voice<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/sendVoice&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L17">telegram/telegram-provider.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L17">telegram/telegram-provider.ts:17</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1898,7 +1994,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">set<wbr>Chat<wbr>Description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/setChatDescription&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L33">telegram/telegram-provider.ts:33</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L33">telegram/telegram-provider.ts:33</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1908,7 +2004,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">set<wbr>Chat<wbr>Photo<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/setChatPhoto&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L30">telegram/telegram-provider.ts:30</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L30">telegram/telegram-provider.ts:30</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1918,7 +2014,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">set<wbr>Chat<wbr>Title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/setChatTitle&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L32">telegram/telegram-provider.ts:32</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L32">telegram/telegram-provider.ts:32</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1928,7 +2024,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">unban<wbr>Chat<wbr>Member<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/unbanChatMember&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L26">telegram/telegram-provider.ts:26</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L26">telegram/telegram-provider.ts:26</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1938,7 +2034,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">unpin<wbr>Chat<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/unpinChatMessage&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L35">telegram/telegram-provider.ts:35</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L35">telegram/telegram-provider.ts:35</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1948,7 +2044,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">games<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L53">telegram/telegram-provider.ts:53</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L53">telegram/telegram-provider.ts:53</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1957,7 +2053,7 @@ telegram.messages.sendMessage(messagePayload)
 							<div class="tsd-signature tsd-kind-icon">get<wbr>Game<wbr>High<wbr>Scores<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/getGameHighScores&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L56">telegram/telegram-provider.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L56">telegram/telegram-provider.ts:56</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -1967,7 +2063,7 @@ telegram.messages.sendMessage(messagePayload)
 							<div class="tsd-signature tsd-kind-icon">send<wbr>Game<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/sendGame&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L54">telegram/telegram-provider.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L54">telegram/telegram-provider.ts:54</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -1977,7 +2073,7 @@ telegram.messages.sendMessage(messagePayload)
 							<div class="tsd-signature tsd-kind-icon">set<wbr>Game<wbr>Score<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/setGameScore&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L55">telegram/telegram-provider.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L55">telegram/telegram-provider.ts:55</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -1988,7 +2084,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">inline<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L58">telegram/telegram-provider.ts:58</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L58">telegram/telegram-provider.ts:58</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1997,7 +2093,7 @@ telegram.messages.sendMessage(messagePayload)
 							<div class="tsd-signature tsd-kind-icon">answer<wbr>Inline<wbr>Query<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/answerInlineQuery&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L59">telegram/telegram-provider.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L59">telegram/telegram-provider.ts:59</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -2008,7 +2104,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">payments<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L48">telegram/telegram-provider.ts:48</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L48">telegram/telegram-provider.ts:48</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -2017,7 +2113,7 @@ telegram.messages.sendMessage(messagePayload)
 							<div class="tsd-signature tsd-kind-icon">answer<wbr>Pre<wbr>Checkout<wbr>Query<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/answerPreCheckoutQuery&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L51">telegram/telegram-provider.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L51">telegram/telegram-provider.ts:51</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -2027,7 +2123,7 @@ telegram.messages.sendMessage(messagePayload)
 							<div class="tsd-signature tsd-kind-icon">answer<wbr>Shipping<wbr>Query<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/answerShippingQuery&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L50">telegram/telegram-provider.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L50">telegram/telegram-provider.ts:50</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -2037,7 +2133,7 @@ telegram.messages.sendMessage(messagePayload)
 							<div class="tsd-signature tsd-kind-icon">send<wbr>Invoice<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/sendInvoice&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L49">telegram/telegram-provider.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L49">telegram/telegram-provider.ts:49</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -2048,7 +2144,7 @@ telegram.messages.sendMessage(messagePayload)
 						<div class="tsd-signature tsd-kind-icon">updates<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L42">telegram/telegram-provider.ts:42</a></li>
+								<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L42">telegram/telegram-provider.ts:42</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -2057,7 +2153,7 @@ telegram.messages.sendMessage(messagePayload)
 							<div class="tsd-signature tsd-kind-icon">delete<wbr>Webhook<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/deleteWebhook&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L45">telegram/telegram-provider.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L45">telegram/telegram-provider.ts:45</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -2067,7 +2163,7 @@ telegram.messages.sendMessage(messagePayload)
 							<div class="tsd-signature tsd-kind-icon">get<wbr>Updates<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/getUpdates&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L43">telegram/telegram-provider.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L43">telegram/telegram-provider.ts:43</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -2077,7 +2173,7 @@ telegram.messages.sendMessage(messagePayload)
 							<div class="tsd-signature tsd-kind-icon">get<wbr>Webhook<wbr>Info<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/getWebhookInfo&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L46">telegram/telegram-provider.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L46">telegram/telegram-provider.ts:46</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -2087,7 +2183,7 @@ telegram.messages.sendMessage(messagePayload)
 							<div class="tsd-signature tsd-kind-icon">set<wbr>Webook<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/setWebook&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/31637f5/src/models/telegram/telegram-provider.ts#L44">telegram/telegram-provider.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/ukaoskid/telegram-api/blob/3d2ed4e/src/models/telegram/telegram-provider.ts#L44">telegram/telegram-provider.ts:44</a></li>
 								</ul>
 							</aside>
 						</section>

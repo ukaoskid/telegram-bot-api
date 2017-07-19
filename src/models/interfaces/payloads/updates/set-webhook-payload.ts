@@ -1,9 +1,9 @@
+import { InputFile } from "../../../telegram/types/input-file";
+
 /**
  * Set Webhook API Payload.
  */
 export interface ISetWebhookPayload {
-
-  // Todo implement InputFile to certificate.
 
   /**
    * HTTPS url to send updates to. Use an empty string to remove webhook integration.
@@ -13,7 +13,7 @@ export interface ISetWebhookPayload {
   /**
    * Upload your public key certificate so that the root certificate in use can be checked.
    */
-  certificate?: any,
+  certificate?: InputFile,
 
   /**
    * Maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery, 1-100.

@@ -1,4 +1,5 @@
 import { IBaseSendPayload } from "./base-send-payload";
+import { InputFile } from "../../../telegram/types/input-file";
 /**
  * Send Video API Payload
  */
@@ -8,7 +9,7 @@ export interface ISendVideoPayload extends IBaseSendPayload {
      * pass an HTTP URL as a String for Telegram to get a video from the Internet,
      * or upload a new video using multipart/form-data
      */
-    video: string;
+    video: InputFile | string;
     /**
      * Duration of sent video in seconds.
      */

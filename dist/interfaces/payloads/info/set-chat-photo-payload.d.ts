@@ -1,3 +1,4 @@
+import { InputFile } from "../../../telegram/types/input-file";
 /**
  * Set Chat Photo API Payload.
  */
@@ -10,5 +11,5 @@ export interface ISetChatPhotoPayload {
     /**
      * New chat photo, uploaded using multipart/form-data.
      */
-    photo: any;
+    photo: InputFile | string;
 }
