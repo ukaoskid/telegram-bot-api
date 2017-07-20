@@ -57,6 +57,12 @@ export const TelegramProvider = {
     },
     inline: {
       answerInlineQuery: "/answerInlineQuery"
+    },
+    messageUpdates: {
+      editMessageText: "/editMessageText",
+      editMessageCaption: "/editMessageCaption",
+      editMessageReplyMarkup: "/editMessageReplyMarkup",
+      deleteMessage: "/deleteMessage"
     }
   }
 };

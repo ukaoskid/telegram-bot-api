@@ -57,5 +57,11 @@ export declare const TelegramProvider: {
         inline: {
             answerInlineQuery: string;
         };
+        messageUpdates: {
+            editMessageText: string;
+            editMessageCaption: string;
+            editMessageReplyMarkup: string;
+            deleteMessage: string;
+        };
     };
 };

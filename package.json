@@ -1,6 +1,6 @@
 {
   "name": "telegram-bot-api-client",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Telegram Bot API",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,8 @@
   "keywords": [
     "telegram",
     "api",
-    "bot"
+    "bot",
+    "client"
   ],
   "author": "Simone Di Cicco",
   "license": "MIT",

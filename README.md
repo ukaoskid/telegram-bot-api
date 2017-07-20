@@ -85,34 +85,31 @@ telegram.messages.sendPhoto(photoPayload)
     - [X] Generic available methods (added in 1.0.0)
     - [X] Inline mode
     - [X] Getting updates (bot's incoming updates and webhook management) (added in 1.0.6)
-    - [ ] Update messages (edit sent messages etc.)
+    - [X] Messages updates (edit sent messages etc.) (added in 1.0.11)
     - [X] Payments (added in 1.0.7)
     - [X] Games (added in 1.0.8)
 
 ## Changelog
 
-### 1.0.10 - Current
-- Added **InputFile** to send file streams payloads (audio, documents, etc.)
-- Improved the JSDoc
-
-### 1.0.9
-- Added **Inline mode** interface
-- Improved the JSDoc
-
-### 1.0.8
-- Added **Games** interface
-- Improved the JSDoc
-
-### 1.0.7
-- Added **Payments** interface
-- Improved the JSDoc
-
-### 1.0.6
-- Added **Getting updates** interface (bot's incoming updates and webhook mangement)
-- Improved the JSDoc
-
-### 1.0.5 > 1.0.1
-- Improved the JSDoc
-
-### 1.0.0
-- Initial release
+- 1.0.11 - Current
+    - Added **Messages update**
+    - Improved the JSDoc
+- 1.0.10
+    - Added **InputFile** to send file streams payloads (audio, documents, etc.)
+    - Improved the JSDoc
+- 1.0.9
+    - Added **Inline mode** interface
+    - Improved the JSDoc
+- 1.0.8
+    - Added **Games** interface
+    - Improved the JSDoc
+- 1.0.7
+    - Added **Payments** interface
+    - Improved the JSDoc
+- 1.0.6
+    - Added **Getting updates** interface (bot's incoming updates and webhook mangement)
+    - Improved the JSDoc
+- 1.0.5 > 1.0.1
+    - Improved the JSDoc
+- 1.0.0
+    - Initial release
