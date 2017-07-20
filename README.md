@@ -91,6 +91,8 @@ telegram.messages.sendPhoto(photoPayload)
 
 ## Changelog
 
+- 1.0.12 - Current
+    - Improved the JSDoc
 - 1.0.11 - Current
     - Added **Messages update**
     - Improved the JSDoc
