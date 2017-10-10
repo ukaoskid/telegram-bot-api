@@ -11,7 +11,6 @@ class HTTPRequest {
             formData: payload,
             json: true
         };
-        console.log(JSON.stringify(options));
         return rp(options).promise()
             .catch((error) => {
             throw error.error;
